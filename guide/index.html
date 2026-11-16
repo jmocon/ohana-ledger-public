@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OhanaLedger User Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500;600&display=swap">
+<style>
+  :root {
+    --ground: #E9E6DF;
+    --surface: #FCFCFD;
+    --surface-alt: #EFF2F5;
+    --ink: #1D2633;
+    --muted: #4C5767;
+    --faint: #5C6775;
+    --rule: #D9DDE3;
+    --narra: #9C6B1F;
+    --narra-soft: #F1E7D3;
+    --pandan: #2E6A63;
+    --pandan-soft: #DFEAE7;
+    --display: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --ground: #12161C; --surface: #1B2027; --surface-alt: #242A32;
+      --ink: #E9EDF1; --muted: #9DA7B4; --faint: #808C9B; --rule: #303740;
+      --narra: #CD9C51; --narra-soft: #362A16; --pandan: #62B2AF; --pandan-soft: #192E2D;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --ground: #12161C; --surface: #1B2027; --surface-alt: #242A32;
+    --ink: #E9EDF1; --muted: #9DA7B4; --faint: #808C9B; --rule: #303740;
+    --narra: #CD9C51; --narra-soft: #362A16; --pandan: #62B2AF; --pandan-soft: #192E2D;
+  }
+
+  body {
+    background: var(--ground); color: var(--ink);
+    font-family: var(--sans); font-size: 16px; line-height: 1.6;
+    padding-inline: 18px; padding-block: 36px 72px;
+  }
+  .page { max-width: 44rem; margin: 0 auto; display: grid; gap: 48px; }
+  header { display: grid; gap: 10px; }
+  .app { color: var(--narra); font-weight: 600; font-size: 0.95rem; margin: 0; }
+  h1 { font-family: var(--display); font-weight: 600; font-size: clamp(2rem, 6vw, 2.75rem); line-height: 1.1; margin: 0; text-wrap: balance; }
+  .lede { color: var(--muted); margin: 0; max-width: 38rem; }
+  h2 { font-family: var(--display); font-weight: 600; font-size: 1.6rem; line-height: 1.2; margin: 0; text-wrap: balance; }
+  h3 { font-size: 1.05rem; font-weight: 600; margin: 0; }
+  p, ul, ol { margin: 0; }
+  ul, ol { padding-left: 1.25rem; display: grid; gap: 6px; }
+  a { color: var(--narra); text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--narra); outline-offset: 2px; border-radius: 2px; }
+  .num { font-family: var(--mono); font-size: 0.9em; }
+
+  /* The in-app path to a screen, written the way the app labels it. */
+  .path {
+    display: inline-block; font-size: 0.86rem; color: var(--muted);
+    background: var(--surface-alt); border: 1px solid var(--rule);
+    border-radius: 6px; padding: 1px 8px;
+  }
+  b.ui { font-weight: 600; }
+
+  nav.contents { background: var(--surface); border: 1px solid var(--rule); border-radius: 10px; padding: 18px 20px; display: grid; gap: 10px; }
+  nav.contents h2 { font-family: var(--sans); font-size: 1rem; font-weight: 600; }
+  nav.contents ol { columns: 2 14rem; column-gap: 28px; display: block; }
+  nav.contents li { margin-bottom: 4px; break-inside: avoid; }
+
+  section.part { display: grid; gap: 22px; scroll-margin-top: 16px; }
+  .part-head { display: grid; gap: 6px; }
+  .part-head p { color: var(--muted); }
+  .topic { display: grid; gap: 10px; }
+
+  .tip { border-left: 3px solid var(--narra); background: var(--narra-soft); padding: 12px 16px; border-radius: 0 8px 8px 0; }
+  .health .tip, .tip.health { border-left-color: var(--pandan); background: var(--pandan-soft); }
+
+  dl.faq { display: grid; gap: 0; margin: 0; border-top: 1px solid var(--rule); }
+  dl.faq > div { padding: 14px 0; border-bottom: 1px solid var(--rule); display: grid; gap: 4px; }
+  dt { font-weight: 600; }
+  dd { margin: 0; color: var(--ink); }
+
+  footer { color: var(--faint); font-size: 0.85rem; border-top: 1px solid var(--rule); padding-top: 20px; }
+
+  .site { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 20px; font-size: 0.92rem; }
+  .site .home { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 600; }
+  .site .home img { width: 28px; height: 28px; border-radius: 7px; }
+  .site nav { display: flex; gap: 18px; }
+  .site nav a[aria-current] { color: var(--ink); text-decoration: none; font-weight: 600; }
+</style>
+<link rel="icon" type="image/png" href="../images/icon-192.png">
+</head>
+<body>
+<main class="page">
+  <div class="site">
+    <a class="home" href="../"><img src="../images/icon-192.png" alt="">OhanaLedger</a>
+    <nav aria-label="Site"><a href="../guide/" aria-current="page">User guide</a><a href="../privacy/">Privacy</a></nav>
+  </div>
+  <header>
+    <p class="app">OhanaLedger</p>
+    <h1>How OhanaLedger works</h1>
+    <p class="lede">A guide to keeping the household’s money and the family’s health records in the app, organised by what you want to do. Everything described here happens on your phone; nothing is sent to us.</p>
+  </header>
+
+  <nav class="contents" aria-label="Contents">
+    <h2>Contents</h2>
+    <ol>
+      <li><a href="#start">Getting started</a></li>
+      <li><a href="#tour">Finding your way around</a></li>
+      <li><a href="#accounts">Accounts</a></li>
+      <li><a href="#entries">Recording money</a></li>
+      <li><a href="#bills">Bills and paydays</a></li>
+      <li><a href="#goals">Saving for something</a></li>
+      <li><a href="#reports">Seeing where money went</a></li>
+      <li><a href="#people">People in the household</a></li>
+      <li><a href="#health">Health records</a></li>
+      <li><a href="#doses">Medication and doses</a></li>
+      <li><a href="#emergency">The emergency card</a></li>
+      <li><a href="#papers">Papers and expiry dates</a></li>
+      <li><a href="#backup">Backups and a new phone</a></li>
+      <li><a href="#privacy">Lock, privacy and deleting</a></li>
+      <li><a href="#faq">Common questions</a></li>
+    </ol>
+  </nav>
+
+  <section class="part" id="start">
+    <div class="part-head">
+      <h2>Getting started</h2>
+      <p>The first time you open the app it asks how you are starting.</p>
+    </div>
+    <div class="topic">
+      <h3>A new household</h3>
+      <ol>
+        <li>Tap <b class="ui">Start a new household</b>.</li>
+        <li>Enter your name. A first name is enough; the rest can be added later.</li>
+        <li>Add the first place money is kept, for example your wallet, with roughly what is in it now.</li>
+        <li>Tap <b class="ui">Open Today</b>. You can skip either step and come back to it; Today lists what was put off.</li>
+      </ol>
+    </div>
+    <div class="topic">
+      <h3>Joining a household already using the app</h3>
+      <p>If your partner already keeps the household’s records on their phone:</p>
+      <ol>
+        <li>On their phone, open <span class="path">Settings → Key and recovery code</span> and show the recovery code.</li>
+        <li>On your phone, tap <b class="ui">Join a household already using it</b> and enter that code.</li>
+        <li>On their phone, write a backup (<span class="path">Settings → Backup → Write and share</span>) and send the file to yourself.</li>
+        <li>On your phone, restore that file. Both phones now show the same key fingerprint.</li>
+      </ol>
+      <p class="tip">The two phones do not sync. Each backup is a snapshot; to bring the other phone up to date, write and restore a new one.</p>
+    </div>
+  </section>
+
+  <section class="part" id="tour">
+    <div class="part-head">
+      <h2>Finding your way around</h2>
+      <p>Four tabs run along the bottom of the screen.</p>
+    </div>
+    <ul>
+      <li><b class="ui">Today</b> shows what the household holds, what went out this month, anything that needs you today (a bill, a dose, a paper running out), what is coming up, and the latest entries.</li>
+      <li><b class="ui">Money</b> holds the accounts and every money tool: the ledger, reports, transfers, goals, bills, income and the forecast.</li>
+      <li><b class="ui">Health</b> lists each person’s record, doses due, growth charts, pregnancy, appointments and doctors.</li>
+      <li><b class="ui">Settings</b> covers the household, categories, currency, reminders, the lock, backups, and recently deleted items.</li>
+    </ul>
+    <p>Tapping an existing record opens it to read. To change it, tap <b class="ui">Edit</b> at the top. The phone’s Back button or gesture always closes a form without saving.</p>
+  </section>
+
+  <section class="part" id="accounts">
+    <div class="part-head">
+      <h2>Accounts</h2>
+      <p class="path">Money → Manage accounts → Add</p>
+    </div>
+    <ul>
+      <li>Choose a type: <b class="ui">Cash</b>, <b class="ui">Bank</b>, <b class="ui">E-wallet</b> (GCash, Maya), <b class="ui">Credit</b> or <b class="ui">Investment</b>.</li>
+      <li>Enter the balance right now. For a credit card, choose <b class="ui">Owes this</b> so it counts as money owed.</li>
+      <li>Set who it belongs to, or leave it <b class="ui">Shared</b>. Money groups the totals by owner.</li>
+    </ul>
+    <p>An account that has entries cannot be deleted, because past months would stop adding up. <b class="ui">Close account</b> instead: it leaves the active list and its history stays.</p>
+  </section>
+
+  <section class="part" id="entries">
+    <div class="part-head">
+      <h2>Recording money</h2>
+      <p class="path">Today → Money, or Money → Record</p>
+    </div>
+    <div class="topic">
+      <h3>An expense or income</h3>
+      <ol>
+        <li>Choose <b class="ui">Money out</b> or <b class="ui">Money in</b>, and type the amount.</li>
+        <li>Pick the account, the category, who was paid (<b class="ui">Paid to</b>), and the date (today unless you change it).</li>
+        <li>For money out, say <b class="ui">Who was it for?</b>: the <b class="ui">Household</b> (already chosen), one person, or <b class="ui">Split it</b>. Check <b class="ui">Paid by</b> underneath.</li>
+        <li>Optionally tap <b class="ui">More details</b> to add a note and a photo of the receipt.</li>
+        <li>Tap <b class="ui">Save</b> at the top, or <b class="ui">Record entry</b> at the bottom.</li>
+      </ol>
+      <p>Type a new name under <b class="ui">Paid to</b> to save it. Next time you pick that payee, its usual category and account are filled in for you. Picking someone who usually pays you, such as an employer, switches the entry to <b class="ui">Money in</b>.</p>
+    </div>
+    <div class="topic">
+      <h3>A receipt for more than one person</h3>
+      <p>Tap <b class="ui">Split it</b>. There is a part for each parent: type what was theirs, and the <b class="ui">Household</b> takes whatever is left, so a mostly shared receipt needs only one or two figures. Tap a name to change who a part was for, and <b class="ui">Add an item</b> to list items one by one with what they were.</p>
+      <p>Underneath, the app says who owes whom on that receipt, for example <b class="ui">Dado owes Tala ₱300.00</b>. The household's share is divided the way <b class="ui">Settings → Contribution</b> says, and a child's items count as the household's. Nothing is owed when the payer is not recorded.</p>
+      <p>Next time you pick the same <b class="ui">Paid to</b>, the entry starts the way the last one there went: the household's, one person's, or split.</p>
+      <p>Closing a form you have filled in asks before throwing it away.</p>
+    </div>
+    <div class="topic">
+      <h3>When the account cannot cover it</h3>
+      <p>Before saving, the app warns you if the expense would take a wallet, bank or e-wallet below zero, or dip into money set aside for a savings goal. Choose <b class="ui">Change it</b> to fix the amount, or <b class="ui">Spend anyway</b>. If savings were affected, the app then asks which goal gives up the difference. Credit cards are never warned about, since they are meant to go negative.</p>
+    </div>
+    <div class="topic">
+      <h3>Moving money between your own accounts</h3>
+      <p class="path">Money → Move money</p>
+      <p>Use a transfer, for example cash withdrawn from the bank, rather than two entries. A transfer is not spending, so it never shows up in your spending reports. The screen shows both balances after the move before you confirm.</p>
+    </div>
+  </section>
+
+  <section class="part" id="bills">
+    <div class="part-head">
+      <h2>Bills and paydays</h2>
+    </div>
+    <div class="topic">
+      <h3>Recurring expenses</h3>
+      <p class="path">Money → Recurring expenses → Add</p>
+      <p>Set the name (Meralco, water, wifi), roughly what it costs, how often (monthly, weekly or yearly), the next due date, the usual account and category, and how many days ahead to be reminded. Mark <b class="ui">Paid automatically</b> for autopay.</p>
+      <p>To pay one, tap it and <b class="ui">Record payment</b>. Enter what you actually paid. The entry goes on the ledger and the due date moves on, together. A bill due on the 31st moves to the last day of shorter months.</p>
+    </div>
+    <div class="topic">
+      <h3>Expected income</h3>
+      <p class="path">Money → Coming in</p>
+      <p>Add paydays and other regular income the same way. When it arrives, tap it and <b class="ui">Record it</b> with the amount that actually came in. On the day it is due, it also appears on Today.</p>
+    </div>
+    <div class="topic">
+      <h3>Between now and payday</h3>
+      <p class="path">Money → Between now and payday</p>
+      <p>A forecast of the next 45 days: what you hold, minus money set aside for goals, plus expected income, minus bills. The chart shows the lowest point and whether anything falls below zero. It is an estimate, not the ledger.</p>
+    </div>
+  </section>
+
+  <section class="part" id="goals">
+    <div class="part-head">
+      <h2>Saving for something</h2>
+      <p class="path">Money → Saving for → Add</p>
+    </div>
+    <ul>
+      <li>Name the goal, enter what it costs, choose the account the money is kept in, and optionally a target date. With a date, the goal shows how much to put aside each month.</li>
+      <li><b class="ui">Set aside what is already there</b> marks money already in the account as being for this goal. Nothing moves.</li>
+      <li><b class="ui">Move money in from another account</b> transfers money into the goal’s account.</li>
+      <li>When you buy the thing, tap <b class="ui">I bought it</b>.</li>
+    </ul>
+    <p>Several goals can share one account. If spending leaves the account holding less than its goals have set aside, Saving for shows a warning; <b class="ui">Sort out</b> lets you decide which goal gives way.</p>
+  </section>
+
+  <section class="part" id="reports">
+    <div class="part-head">
+      <h2>Seeing where money went</h2>
+    </div>
+    <ul>
+      <li><b class="ui">Transactions</b>: every entry by day, for a month or a year, with money in, money out and what is left. Use the arrows to step through periods.</li>
+      <li><b class="ui">Where it went</b>: a breakdown by category for money out, money in, or both. A heading such as Transportation includes everything filed under it.</li>
+      <li><b class="ui">Spending over time</b>: spending by day, week, month or year, or a range you pick.</li>
+    </ul>
+    <p>Categories go two levels deep, for example Transport and under it Grab. Manage them in <span class="path">Settings → Categories</span>.</p>
+    <p>Each category can have an icon, which is shown beside its entries everywhere in the ledger. Open a category and pick one from the grid. Tap the chosen icon again to clear it. A sub-category with no icon of its own uses its heading's.</p>
+  </section>
+
+  <section class="part" id="people">
+    <div class="part-head">
+      <h2>People in the household</h2>
+      <p class="path">Settings → Household members → Add</p>
+    </div>
+    <ul>
+      <li>Names are entered in parts: first, middle, last and suffix. A short name, if set, is what shows on rows.</li>
+      <li>Mark each person as a parent or other, and adult or minor. Add a date of birth and sex for children; the growth charts need both.</li>
+      <li>For an adult, add a phone number and turn on <b class="ui">Call in an emergency</b> to list them on the emergency card. Children are never offered as someone to call.</li>
+    </ul>
+    <p>If an emergency contact has no number saved, Settings points it out so the card is not left without anyone to ring.</p>
+  </section>
+
+  <section class="part health" id="health">
+    <div class="part-head">
+      <h2>Health records</h2>
+      <p class="path">Health → tap a person</p>
+    </div>
+    <p>Each person has one record with sections for visits, medications, allergies, conditions, immunisations and measurements. Use the <b class="ui">Add</b> button beside a section to add to it.</p>
+    <div class="topic">
+      <h3>Allergies</h3>
+      <p>You must choose a severity before an allergy can be saved, because it decides who sees it. <b class="ui">Severe</b> allergies are pinned to the top of the person’s page and shown first on the emergency card. <b class="ui">Moderate</b> ones are also on the card; <b class="ui">mild</b> ones stay on the record only.</p>
+    </div>
+    <div class="topic">
+      <h3>Visits and appointments</h3>
+      <p>Add a visit with its date, the doctor, the reason, and afterwards what was found and the plan. A future date makes it an appointment, with a reminder. Turn on <b class="ui">Record a cost</b> to put what it cost on the ledger under Health. All visits are listed in <span class="path">Health → Appointments</span>; open one to move or cancel it.</p>
+    </div>
+    <div class="topic">
+      <h3>Measurements and growth</h3>
+      <p>Record weight, height, temperature, blood pressure and more. For children, <span class="path">Health → Growth</span> plots weight, height and BMI against the WHO reference and gives a percentile. A percentile is a position, not a verdict; one reading is not a trend.</p>
+    </div>
+    <div class="topic">
+      <h3>Pregnancy</h3>
+      <p class="path">Health → Pregnancy → Add</p>
+      <p>Enter the due date, or the first day of the last period. How far along is worked out from it every day, and weights already recorded are plotted.</p>
+    </div>
+    <div class="topic">
+      <h3>Doctors and clinics</h3>
+      <p class="path">Health → Doctors and clinics</p>
+      <p>Save each doctor with a phone number. The call button opens the phone’s dialler with the number ready.</p>
+    </div>
+  </section>
+
+  <section class="part health" id="doses">
+    <div class="part-head">
+      <h2>Medication and doses</h2>
+    </div>
+    <ol>
+      <li>Add a medication to a person with its dose and how often.</li>
+      <li>Under <b class="ui">Doses a day</b>, choose once, twice, three or four times a day, or set your own times.</li>
+      <li>Each dose then appears in <span class="path">Health → Doses</span> and on Today when it is due. Tap it and answer <b class="ui">Taken</b>, or <b class="ui">Let this one go</b> to record it as deliberately skipped.</li>
+    </ol>
+    <p class="tip health">If a medicine’s name contains something the person is recorded as allergic to, the app asks before saving. It only compares names, so it cannot tell that amoxicillin is a penicillin. Always check with a doctor or pharmacist.</p>
+  </section>
+
+  <section class="part health" id="emergency">
+    <div class="part-head">
+      <h2>The emergency card</h2>
+      <p class="path">Health → Emergency</p>
+    </div>
+    <p>One page for someone helping in an emergency: each person’s age and blood type, severe and moderate allergies, current medication, ongoing conditions, and who to call with a tap. It can be opened from the lock screen without unlocking the app, and it offers no way into anything else.</p>
+  </section>
+
+  <section class="part" id="papers">
+    <div class="part-head">
+      <h2>Papers and expiry dates</h2>
+      <p class="path">Settings → Papers → Add</p>
+    </div>
+    <p>Keep passports, licences, registrations and similar papers with their number, whose they are, the issue and expiry dates, and a photo. The app reminds you before one runs out. When you renew, edit the same paper with the new dates rather than adding another.</p>
+  </section>
+
+  <section class="part" id="backup">
+    <div class="part-head">
+      <h2>Backups and a new phone</h2>
+      <p class="path">Settings → Backup</p>
+    </div>
+    <div class="topic">
+      <h3>Writing a backup</h3>
+      <ol>
+        <li>Leave <b class="ui">Include photos</b> on to carry receipts and scans, or turn it off for a smaller file.</li>
+        <li>Tap <b class="ui">Write and share</b>, then save the file somewhere safe, such as Google Drive.</li>
+      </ol>
+      <p>The file is encrypted. Only a phone holding your recovery code can open it. Settings shows how many changes are not in a backup yet.</p>
+    </div>
+    <div class="topic">
+      <h3>Moving to a new phone</h3>
+      <ol>
+        <li>On the old phone, write a backup and note the recovery code from <span class="path">Settings → Key and recovery code</span>.</li>
+        <li>On the new phone, install OhanaLedger, choose <b class="ui">Join a household already using it</b>, and enter the code.</li>
+        <li>Restore the backup file. Photos already on the phone are kept; missing ones are added.</li>
+      </ol>
+    </div>
+    <p class="tip">Keep the recovery code somewhere safe and private. Without it, a backup cannot be opened. With it, anyone holding your backup file can read it.</p>
+  </section>
+
+  <section class="part" id="privacy">
+    <div class="part-head">
+      <h2>Lock, privacy and deleting</h2>
+    </div>
+    <ul>
+      <li><b class="ui">Fingerprint lock</b> (<span class="path">Settings</span>) asks for your fingerprint when the app opens and after it has been away for a minute.</li>
+      <li><b class="ui">Celebrations</b> (<span class="path">Settings</span>) are the small moments when you finish something: a stamp when a bill is paid, a tick when a dose is taken, a line when a savings goal passes a quarter, a half or three quarters, and a look back at last month during the first week of each month. Turn the switch off for none of them.</li>
+      <li><b class="ui">Theme</b> (<span class="path">Settings</span>) changes how the app looks. "Same as the phone" switches between Light and Dark with the phone. The others stay as you set them: Light, Dark, Sampaguita, Forest, Ocean, Summer, Winter, Mochi and Blossom.</li>
+      <li><b class="ui">Hide balances</b> covers what the household holds, useful when someone is looking over your shoulder. Tap the hidden figure on Today to show it.</li>
+      <li>Anything you delete goes to <span class="path">Settings → Recently deleted</span> for 30 days (you can change this). Open it to <b class="ui">Put it back</b> or <b class="ui">Delete for good</b>.</li>
+      <li><span class="path">Settings → Export</span> makes a spreadsheet of the ledger or a PDF of a person’s health record. Exports are not encrypted.</li>
+      <li>Ads appear only at the bottom of some overview pages, never on health pages. In Europe and the UK you can change your ad choices in <span class="path">Settings → Ad privacy choices</span>.</li>
+    </ul>
+  </section>
+
+  <section class="part" id="faq">
+    <div class="part-head">
+      <h2>Common questions</h2>
+    </div>
+    <dl class="faq">
+      <div><dt>Where is my data kept?</dt><dd>Only on your phone. There is no account and no server. The only copies elsewhere are backup files you save yourself, and your phone’s own Android backup if that is turned on.</dd></div>
+      <div><dt>What happens if I lose my phone?</dt><dd>Install the app on a new phone, choose Join a household, enter your recovery code, and restore your latest backup file. Anything recorded after that backup is lost, so back up regularly.</dd></div>
+      <div><dt>Do two phones stay in sync?</dt><dd>No. A backup is a snapshot. The phone you restore it on matches the file at that moment.</dd></div>
+      <div><dt>Why doesn’t a transfer count as spending?</dt><dd>Moving money from one of your accounts to another does not change what the household has, so it is left out of spending reports.</dd></div>
+      <div><dt>Why can’t I delete an account or category?</dt><dd>Because entries are filed under it, and deleting it would change past months. Close the account, or hide the category, instead.</dd></div>
+      <div><dt>I deleted something by mistake.</dt><dd>Right after deleting, tap <b class="ui">Undo</b> on the message at the bottom of the screen. Later, open Settings → Recently deleted and tap Put it back. Items stay there for 30 days unless you change the setting.</dd></div>
+      <div><dt>Can I use a currency other than pesos?</dt><dd>Yes, in Settings → Currency. It changes how figures are written, not the amounts themselves.</dd></div>
+    </dl>
+  </section>
+
+  <footer>
+    <p>OhanaLedger user guide, for version <span class="num">1.0.0</span>. Questions about privacy are answered in the <a href="../privacy/">OhanaLedger privacy policy</a>.</p>
+  </footer>
+</main>
+</body>
+</html>

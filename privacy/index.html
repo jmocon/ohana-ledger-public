@@ -1,0 +1,291 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OhanaLedger Privacy Policy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<style>
+  :root {
+    --ground: #E9E6DF;
+    --surface: #FCFCFD;
+    --surface-alt: #EFF2F5;
+    --ink: #1D2633;
+    --muted: #4C5767;
+    --faint: #5C6775;
+    --rule: #D9DDE3;
+    --narra: #9C6B1F;
+    --narra-soft: #F1E7D3;
+    --pandan: #2E6A63;
+    --pandan-soft: #DFEAE7;
+    --display: 'Fraunces', Georgia, 'Times New Roman', serif;
+    --sans: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+    --mono: 'IBM Plex Mono', ui-monospace, 'SFMono-Regular', Menlo, Consolas, monospace;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      color-scheme: dark;
+      --ground: #12161C;
+      --surface: #1B2027;
+      --surface-alt: #242A32;
+      --ink: #E9EDF1;
+      --muted: #9DA7B4;
+      --faint: #808C9B;
+      --rule: #303740;
+      --narra: #CD9C51;
+      --narra-soft: #362A16;
+      --pandan: #62B2AF;
+      --pandan-soft: #192E2D;
+    }
+  }
+  :root[data-theme="dark"] {
+    color-scheme: dark;
+    --ground: #12161C;
+    --surface: #1B2027;
+    --surface-alt: #242A32;
+    --ink: #E9EDF1;
+    --muted: #9DA7B4;
+    --faint: #808C9B;
+    --rule: #303740;
+    --narra: #CD9C51;
+    --narra-soft: #362A16;
+    --pandan: #62B2AF;
+    --pandan-soft: #192E2D;
+  }
+
+  body {
+    background: var(--ground);
+    color: var(--ink);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.6;
+    padding-inline: 20px;
+    padding-block: 40px 64px;
+  }
+  .page { max-width: 42rem; margin: 0 auto; display: grid; gap: 40px; }
+
+  header { display: grid; gap: 12px; }
+  .app { font-family: var(--sans); font-weight: 600; font-size: 0.95rem; color: var(--narra); letter-spacing: 0.02em; }
+  h1 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: clamp(2rem, 6vw, 2.75rem);
+    line-height: 1.1;
+    margin: 0;
+    text-wrap: balance;
+  }
+  .meta { display: flex; flex-wrap: wrap; gap: 6px 24px; color: var(--muted); font-size: 0.9rem; margin: 0; }
+  .meta b { font-weight: 500; color: var(--ink); }
+  .num { font-family: var(--mono); font-size: 0.88em; }
+
+  .summary {
+    background: var(--surface);
+    border: 1px solid var(--rule);
+    border-radius: 10px;
+    padding: 20px 22px;
+    display: grid;
+    gap: 10px;
+  }
+  .summary h2 { font-family: var(--sans); font-size: 1rem; font-weight: 600; margin: 0; }
+  .summary ul { margin: 0; padding-left: 1.2rem; display: grid; gap: 6px; }
+
+  section { display: grid; gap: 12px; }
+  h2 {
+    font-family: var(--display);
+    font-weight: 600;
+    font-size: 1.45rem;
+    line-height: 1.25;
+    margin: 0;
+    text-wrap: balance;
+  }
+  h3 { font-family: var(--sans); font-weight: 600; font-size: 1rem; margin: 8px 0 0; }
+  p, ul { margin: 0; }
+  ul { padding-left: 1.2rem; display: grid; gap: 6px; }
+  a { color: var(--narra); text-underline-offset: 3px; }
+  a:focus-visible { outline: 2px solid var(--narra); outline-offset: 2px; border-radius: 2px; }
+
+  .table-wrap { overflow-x: auto; border: 1px solid var(--rule); border-radius: 10px; background: var(--surface); }
+  table { border-collapse: collapse; width: 100%; font-size: 0.93rem; }
+  th, td { text-align: left; vertical-align: top; padding: 10px 14px; border-bottom: 1px solid var(--rule); }
+  tr:last-child td { border-bottom: 0; }
+  th { font-weight: 600; background: var(--surface-alt); }
+  td:first-child { font-weight: 500; white-space: nowrap; }
+
+  .health {
+    border-left: 3px solid var(--pandan);
+    background: var(--pandan-soft);
+    padding: 14px 18px;
+    border-radius: 0 8px 8px 0;
+  }
+  .placeholder {
+    background: var(--narra-soft);
+    color: var(--ink);
+    padding: 1px 6px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+  footer { color: var(--faint); font-size: 0.85rem; border-top: 1px solid var(--rule); padding-top: 20px; }
+
+  .site { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 20px; font-size: 0.92rem; }
+  .site .home { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-weight: 600; }
+  .site .home img { width: 28px; height: 28px; border-radius: 7px; }
+  .site nav { display: flex; gap: 18px; }
+  .site nav a[aria-current] { color: var(--ink); text-decoration: none; font-weight: 600; }
+</style>
+<link rel="icon" type="image/png" href="../images/icon-192.png">
+</head>
+<body>
+<main class="page">
+  <div class="site">
+    <a class="home" href="../"><img src="../images/icon-192.png" alt="">OhanaLedger</a>
+    <nav aria-label="Site"><a href="../guide/">User guide</a><a href="../privacy/" aria-current="page">Privacy</a></nav>
+  </div>
+  <header>
+    <p class="app">OhanaLedger</p>
+    <h1>Privacy Policy</h1>
+    <p class="meta">
+      <span>Effective <b class="num">16 November 2026</b></span>
+      <span>App ID <b class="num">com.jmocon.ohanaledger</b></span>
+    </p>
+  </header>
+
+  <aside class="summary" aria-label="In short">
+    <h2>In short</h2>
+    <ul>
+      <li>Everything you record in OhanaLedger stays on your phone. There is no account and no OhanaLedger server, and we never receive your records.</li>
+      <li>Backups are files you create yourself, encrypted on your phone, and saved wherever you choose.</li>
+      <li>If you turn on Share on local network, browsers on your own Wi-Fi can open your records after entering a PIN shown on your phone. This connection is not encrypted, and it ends when you tap Stop.</li>
+      <li>The app shows ads from Google AdMob on a few money and overview pages. Google collects some device information to serve them. Ads never appear on health pages, and your records are never given to Google.</li>
+    </ul>
+  </aside>
+
+  <section>
+    <h2>Who this policy is from</h2>
+    <p>OhanaLedger is published by JumEE (“we”). It is an Android app for keeping a household’s money and the family’s health records together on one phone. Questions about this policy can be sent to <a href="mailto:jumariegabotmocon@gmail.com">jumariegabotmocon@gmail.com</a>.</p>
+  </section>
+
+  <section>
+    <h2>What you record in the app</h2>
+    <p>OhanaLedger holds only what you type in or attach:</p>
+    <ul>
+      <li><strong>Household members:</strong> names, role, date of birth, sex, and a phone number if you add one.</li>
+      <li><strong>Money:</strong> accounts and their balances, income and spending entries, who was paid, recurring bills, expected income, savings goals, and how shared costs are split.</li>
+      <li><strong>Papers:</strong> documents such as passports and licences, with their numbers and expiry dates.</li>
+      <li><strong>Photos you attach:</strong> receipts, prescriptions, test results and document scans. Location data is removed from photos when they are added.</li>
+    </ul>
+    <div class="health">
+      <p><strong>Health records</strong> — visits, medications and doses, allergies, conditions, immunisations, measurements such as weight and blood pressure, pregnancy details, and doctors’ contact details. These are sensitive. They are stored only on your phone and never sent to us or to advertisers. They reach another device only if you put them in a backup or export, or open them in a browser through Share on local network. No ad is ever shown on a health page.</p>
+    </div>
+    <p>We do not collect any of this. It is written to the app’s private storage on your phone and nowhere else, unless you move it yourself as described below.</p>
+  </section>
+
+  <section>
+    <h2>What we do not collect</h2>
+    <ul>
+      <li>We run no servers for the app, and there is no sign-up or login.</li>
+      <li>The app contains no analytics and no crash reporting of its own.</li>
+      <li>Apart from the advertising described below, the app does not connect to the internet. Share on local network, which you turn on yourself, talks only to devices on your own Wi-Fi.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Advertising</h2>
+    <p>OhanaLedger is free and shows ads from <strong>Google AdMob</strong>. One ad may appear at the bottom of the Today, Money, Settings, transactions, spending and breakdown pages. Ads never appear on health pages, on forms, or on the emergency card.</p>
+    <p>To show ads, Google’s software in the app collects and processes information about your device, including:</p>
+    <ul>
+      <li>your device’s advertising ID;</li>
+      <li>your IP address and approximate location derived from it;</li>
+      <li>device and app information, such as the phone model, Android version and app version;</li>
+      <li>how you interact with ads, such as views and taps.</li>
+    </ul>
+    <p>This information goes directly to Google, not to us. Google may use it to personalise ads, measure them and prevent fraud. The app never shares your money or health records with Google.</p>
+    <h3>Your choices</h3>
+    <ul>
+      <li>If you are in the European Economic Area, the United Kingdom or Switzerland, the app asks for your consent before personalised ads are shown. You can change your answer at any time in <strong>Settings → Ad privacy choices</strong>.</li>
+      <li>On any Android phone you can reset or delete your advertising ID in the phone’s <strong>Settings → Privacy → Ads</strong> (the exact path varies by phone).</li>
+    </ul>
+    <p>Read how Google uses information from apps that use its services: <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">policies.google.com/technologies/partner-sites</a>.</p>
+  </section>
+
+  <section>
+    <h2>Backups and exports you make</h2>
+    <p>Nothing leaves your phone unless you send it:</p>
+    <ul>
+      <li><strong>Backups.</strong> When you choose Backup, the app writes one file containing your records and, if you choose, your photos. The file is encrypted on your phone (XChaCha20-Poly1305) with a key stored in Android’s secure keystore. Only a phone holding the same recovery code can open it. You decide where the file goes, for example Google Drive or a chat app. That service’s own privacy policy then applies to the file.</li>
+      <li><strong>Exports.</strong> A spreadsheet (CSV) of your ledger or a PDF of a health record can be created and shared on request. Exports are not encrypted, so they are readable by anyone who receives them.</li>
+      <li><strong>Android’s own backup.</strong> If device backup is turned on in your phone’s settings, Android may include the app’s data in your phone’s Google backup. This is controlled by your phone and your Google account, not by the app.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Sharing on your local network</h2>
+    <p><strong>Settings → Share on local network</strong> lets the household use OhanaLedger in a web browser on a laptop or tablet on the same Wi-Fi as the phone. It is off until you turn it on.</p>
+    <ul>
+      <li><strong>Your records stay on the phone.</strong> The phone runs a small web server, and the browser reads and changes the records through it. Nothing passes through us or any other company, and the server cannot be reached from the internet unless you set your router to forward to it.</li>
+      <li><strong>A PIN guards it.</strong> Each time you turn sharing on, the phone shows a new 6-digit PIN, which is never saved. A browser must enter it before it can see anything. You can disconnect any browser from the phone.</li>
+      <li><strong>What a browser can see:</strong> members, money records and health records, the same as in the app. Photos, backups, exports and your recovery code stay on the phone and cannot be opened from a browser.</li>
+      <li><strong>The connection is not encrypted.</strong> It uses plain HTTP, because browsers will not trust an encryption certificate for a home network without warnings. Someone else on the same Wi-Fi with the right tools could read the traffic, PIN included. Use it only on a network you trust, such as your home Wi-Fi, never on public Wi-Fi.</li>
+      <li><strong>It stops when you say.</strong> While sharing is on, Android shows a notification. Tap Stop there or in the app and every browser is disconnected.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Permissions the app asks for</h2>
+    <div class="table-wrap">
+      <table>
+        <thead><tr><th scope="col">Permission</th><th scope="col">What it is used for</th></tr></thead>
+        <tbody>
+          <tr><td>Camera</td><td>Taking a photo of a receipt, prescription or document, only when you tap Photo.</td></tr>
+          <tr><td>Notifications</td><td>Reminders for bills, doses, appointments and expiring papers. They are scheduled on your phone; nothing is sent from a server.</td></tr>
+          <tr><td>Fingerprint / biometrics</td><td>The optional app lock. Android checks your fingerprint; the app never sees or stores it.</td></tr>
+          <tr><td>Photos</td><td>Choosing photos through Android’s photo picker. The app only receives the photos you pick.</td></tr>
+          <tr><td>Internet, advertising ID</td><td>Used by Google AdMob to show ads, and by Share on local network to talk to browsers on your Wi-Fi.</td></tr>
+          <tr><td>Wi-Fi and network state, foreground service</td><td>Share on local network only: finding the phone’s Wi-Fi address, and keeping sharing running, with a notification, while you use other apps.</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section>
+    <h2>The emergency card</h2>
+    <p>The app includes an emergency card listing allergies, current medication, ongoing conditions and who to call. So that someone helping in an emergency can read it, it can be opened without unlocking the app’s fingerprint lock. It offers no way into the rest of the app. Keep this in mind when deciding what to record.</p>
+  </section>
+
+  <section>
+    <h2>Keeping and deleting your information</h2>
+    <ul>
+      <li>Your records stay on your phone until you delete them.</li>
+      <li>Deleted items go to <strong>Recently deleted</strong> for the number of days you set (30 by default), and can be put back or removed for good.</li>
+      <li>Uninstalling the app removes all of its data from your phone. Backup files you saved elsewhere, and any Android device backup, are not affected.</li>
+      <li>For information Google holds for advertising, use Google’s own controls or contact Google.</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>Security</h2>
+    <p>Your records and photos are kept in the app’s private storage, which other apps cannot read, and are protected by your phone’s lock screen and device encryption. They are not separately encrypted inside the app, so anyone who can unlock your phone can open the app unless you turn on the app lock. Backup files are encrypted as described above. Keep your recovery code private: anyone with it and a backup file can read that backup.</p>
+  </section>
+
+  <section>
+    <h2>Children</h2>
+    <p>OhanaLedger is meant to be used by adults managing a household. Parents may keep records about their children in it. The app is not directed at children, and we do not knowingly collect personal information from anyone, including children.</p>
+  </section>
+
+  <section>
+    <h2>Your rights</h2>
+    <p>Because your records are held only on your phone, you can see, correct, export and delete all of them in the app at any time, and we have no copy to hand over or erase. Depending on where you live, laws such as the Philippine Data Privacy Act or the GDPR may give you further rights. For anything relating to advertising data, those rights are exercised with Google. For any other question, contact us at <a href="mailto:jumariegabotmocon@gmail.com">jumariegabotmocon@gmail.com</a>.</p>
+  </section>
+
+  <section>
+    <h2>Changes to this policy</h2>
+    <p>If the app starts handling information differently, this page will be updated and the effective date above will change. A significant change, such as a new way data leaves your phone, will also be announced in the app’s release notes.</p>
+  </section>
+
+  <footer>
+    <p>OhanaLedger Privacy Policy, effective <span class="num">16 November 2026</span>.</p>
+  </footer>
+</main>
+</body>
+</html>
